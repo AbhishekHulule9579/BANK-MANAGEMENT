@@ -1,0 +1,257 @@
+Question 1.
+write java program to remoove a duplicate string with example
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
+
+public class RemoveDuplicateStrings {
+    public static void main(String[] args) {
+        List<String> stringList = new ArrayList<>();
+        stringList.add("apple");
+        stringList.add("banana");
+        stringList.add("cherry");
+        stringList.add("apple");
+        stringList.add("date");
+        stringList.add("banana");
+
+        System.out.println("Original list of strings: " + stringList);
+
+        List<String> uniqueStrings = removeDuplicates(stringList);
+
+        System.out.println("List of strings with duplicates removed: " + uniqueStrings);
+    }
+
+    public static List<String> removeDuplicates(List<String> inputList) {
+        Set<String> uniqueSet = new HashSet<>(inputList);
+        return new ArrayList<>(uniqueSet);
+    }
+}
+
+2.
+write java program to print a duplicate string with example
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+
+public class PrintDuplicateStrings {
+    public static void main(String[] args) {
+        List<String> stringList = new ArrayList<>();
+        stringList.add("apple");
+        stringList.add("banana");
+        stringList.add("cherry");
+        stringList.add("apple");
+        stringList.add("date");
+        stringList.add("banana");
+
+        System.out.println("Original list of strings: " + stringList);
+        
+        printDuplicateStrings(stringList);
+    }
+
+    public static void printDuplicateStrings(List<String> inputList) {
+        Map<String, Integer> stringFrequency = new HashMap<>();
+
+        for (String str : inputList) {
+            stringFrequency.put(str, stringFrequency.getOrDefault(str, 0) + 1);
+        }
+
+        System.out.println("Duplicate strings:");
+        for (Map.Entry<String, Integer> entry : stringFrequency.entrySet()) {
+            if (entry.getValue() > 1) {
+                System.out.println(entry.getKey());
+            }
+        }
+    }
+}
+
+3.
+write a jav a program check if 2552 is palindrome or not
+public class PalindromeNumberCheck {
+    public static void main(String[] args) {
+        int number = 2552;
+
+        if (isPalindrome(number)) {
+            System.out.println(number + " is a palindrome.");
+        } else {
+            System.out.println(number + " is not a palindrome.");
+        }
+    }
+
+    public static boolean isPalindrome(int number) {
+        int originalNumber = number;
+        int reversedNumber = 0;
+
+        while (number > 0) {
+            int remainder = number % 10;
+            reversedNumber = reversedNumber * 10 + remainder;
+            number = number / 10;
+        }
+
+        return originalNumber == reversedNumber;
+    }
+}
+ 2552 is a palindrome
+4.
+import java.util.Scanner;
+
+public class CharacterCountInString {
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter a string: ");
+        String inputString = scanner.nextLine();
+
+        int consonants = 0;
+        int vowels = 0;
+        int specialCharacters = 0;
+
+        inputString = inputString.toLowerCase(); // Convert the input string to lowercase for case insensitivity
+
+        for (int i = 0; i < inputString.length(); i++) {
+            char ch = inputString.charAt(i);
+            if (Character.isLetter(ch)) {
+                if (ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u') {
+                    vowels++;
+                } else {
+                    consonants++;
+                }
+            } else {
+                specialCharacters++;
+            }
+        }
+
+        System.out.println("Consonants: " + consonants);
+        System.out.println("Vowels: " + vowels);
+        System.out.println("Special Characters: " + specialCharacters);
+
+        scanner.close();
+    }
+}
+
+5.
+public class PalindromeCheck {
+    public static void main(String[] args) {
+        String inputString = "OLpleLen Ana raL CheckOn leas OnbuOl Le hIds beOn used3";
+
+        if (isPalindrome(inputString)) {
+            System.out.println("The string is a palindrome.");
+        } else {
+            System.out.println("The string is not a palindrome.");
+        }
+    }
+
+    public static boolean isPalindrome(String str) {
+        str = str.replaceAll("[^a-zA-Z0-9]", ""); // Remove non-alphanumeric characters and spaces
+        str = str.toLowerCase(); // Convert to lowercase for case insensitivity
+
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}
+
+6.
+public class AlphanumericPalindromeCheck {
+    public static void main(String[] args) {
+        String inputString = "OLpleLen Pan?raL CheckOn? wO=h leas= OnbuOl= Le=hIds beOn used3";
+
+        if (isAlphanumericPalindrome(inputString)) {
+            System.out.println("The string is an alphanumeric palindrome.");
+        } else {
+            System.out.println("The string is not an alphanumeric palindrome.");
+        }
+    }
+
+    public static boolean isAlphanumericPalindrome(String str) {
+        // Remove non-alphanumeric characters and spaces and convert to lowercase
+        str = str.replaceAll("[^a-zA-Z0-9]", "").toLowerCase();
+
+        int left = 0;
+        int right = str.length() - 1;
+
+        while (left < right) {
+            if (str.charAt(left) != str.charAt(right)) {
+                return false;
+            }
+            left++;
+            right--;
+        }
+
+        return true;
+    }
+}
+
+7..
+import java.util.HashSet;
+
+public class UniqueConsonants {
+    public static void main(String[] args) {
+        String inputString = "Found Of String Contains all unique characters";
+
+        HashSet<Character> uniqueConsonants = findUniqueConsonants(inputString);
+
+        System.out.println("Unique consonants in the string: " + uniqueConsonants);
+    }
+
+    public static HashSet<Character> findUniqueConsonants(String str) {
+        str = str.toLowerCase(); // Convert the string to lowercase for case insensitivity
+        HashSet<Character> uniqueConsonants = new HashSet<>();
+
+        for (int i = 0; i < str.length(); i++) {
+            char ch = str.charAt(i);
+            if (isConsonant(ch)) {
+                uniqueConsonants.add(ch);
+            }
+        }
+
+        return uniqueConsonants;
+    }
+
+    public static boolean isConsonant(char ch) {
+        return Character.isLetter(ch) && !isVowel(ch);
+    }
+
+    public static boolean isVowel(char ch) {
+        ch = Character.toLowerCase(ch);
+        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    }
+}
+
+8.
+public class LastOccurrenceInString {
+    public static void main(String[] args) {
+        String inputString = "Find the last occurrence character in a String";
+        char targetChar = 'a';
+
+        int lastOccurrence = findLastOccurrence(inputString, targetChar);
+
+        if (lastOccurrence != -1) {
+            System.out.println("The last occurrence of '" + targetChar + "' is at index " + lastOccurrence);
+        } else {
+            System.out.println("The character '" + targetChar + "' is not found in the string.");
+        }
+    }
+
+    public static int findLastOccurrence(String str, char targetChar) {
+        int lastIndex = -1;
+
+        for (int i = 0; i < str.length(); i++) {
+            if (str.charAt(i) == targetChar) {
+                lastIndex = i;
+            }
+        }
+
+        return lastIndex;
+    }
+}
